@@ -6,16 +6,18 @@ class GroceriesList extends StatelessWidget {
   const GroceriesList({
     super.key,
     required this.groceries,
+    required this.onRemoveItem,
   });
 
   final List<Grocery> groceries;
+  final void Function(Grocery grocery) onRemoveItem;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: groceries.length,
       itemBuilder: (ctx, index) => Dismissible(
-        key: ValueKey(groceries[index]),
+        key: ValueKey(groceries[index].id),
         background: Container(
           color: Theme.of(context).colorScheme.error.withValues(
             alpha: 0.75,
@@ -38,7 +40,9 @@ class GroceriesList extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        onDismissed: (direction) {},
+        onDismissed: (direction) {
+          onRemoveItem(groceries[index]);
+        },
         child: GroceryItem(groceries[index]),
       ),
     );
