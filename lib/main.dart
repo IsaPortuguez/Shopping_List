@@ -10,7 +10,10 @@ final theme = ThemeData.dark().copyWith(
     surface: const Color.fromARGB(255, 42, 51, 59),
   ),
   // flutter pub add google_fonts
-  textTheme: GoogleFonts.latoTextTheme(),
+  textTheme: GoogleFonts.latoTextTheme().apply(
+    bodyColor: Colors.white,
+    displayColor: Colors.white,
+  ),
 );
 
 void main() {

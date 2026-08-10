@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_list/models/category.dart';
 
 class NewItemScreen extends StatefulWidget {
   const NewItemScreen({super.key});
@@ -18,7 +19,81 @@ class _NewItemState extends State<NewItemScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(12),
-        child: Text('Form'),
+        child: Form(
+          child: Column(
+            children: [
+              // Instead of TextField()
+              TextFormField(
+                maxLength: 50,
+                decoration: const InputDecoration(
+                  label: Text('Name'),
+                ),
+                validator: (value) {
+                  return 'Demo...';
+                },
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        label: Text('Quantity'),
+                      ),
+                      initialValue: '1',
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    child: DropdownButtonFormField(
+                      decoration: const InputDecoration(
+                        labelText: 'Category',
+                      ),
+                      items: [
+                        // .entries convert the map to a list
+                        for (final category in categoryData.entries)
+                          DropdownMenuItem(
+                            value: category.key,
+                            child: Row(
+                              children: [
+                                Icon(
+                                  category.value.icon,
+                                  color: category.value.color,
+                                ),
+                                const SizedBox(
+                                  width: 6,
+                                ),
+                                Text(category.value.title),
+                              ],
+                            ),
+                          ),
+                      ],
+                      onChanged: (value) {},
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text('Reset'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: const Text('Add Item'),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
