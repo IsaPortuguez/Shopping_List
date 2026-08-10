@@ -14,37 +14,45 @@ class GroceriesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: groceries.length,
-      itemBuilder: (ctx, index) => Dismissible(
-        key: ValueKey(groceries[index].id),
-        background: Container(
-          color: Theme.of(context).colorScheme.error.withValues(
-            alpha: 0.75,
-          ),
-          margin: Theme.of(context).cardTheme.margin,
-          alignment: Alignment.centerLeft,
-          padding: const EdgeInsets.only(left: 20),
-          child: const Icon(
-            Icons.delete,
-            color: Colors.white,
-          ),
-        ),
-        secondaryBackground: Container(
-          color: Theme.of(context).colorScheme.error.withValues(alpha: 0.75),
-          margin: Theme.of(context).cardTheme.margin,
-          alignment: Alignment.centerRight,
-          padding: const EdgeInsets.only(right: 20),
-          child: const Icon(
-            Icons.delete,
-            color: Colors.white,
-          ),
-        ),
-        onDismissed: (direction) {
-          onRemoveItem(groceries[index]);
-        },
-        child: GroceryItem(groceries[index]),
-      ),
+    Widget content = const Center(
+      child: Text('No items added yet.'),
     );
+
+    if (groceries.isNotEmpty) {
+      content = ListView.builder(
+        itemCount: groceries.length,
+        itemBuilder: (ctx, index) => Dismissible(
+          key: ValueKey(groceries[index].id),
+          background: Container(
+            color: Theme.of(context).colorScheme.error.withValues(
+              alpha: 0.75,
+            ),
+            margin: Theme.of(context).cardTheme.margin,
+            alignment: Alignment.centerLeft,
+            padding: const EdgeInsets.only(left: 20),
+            child: const Icon(
+              Icons.delete,
+              color: Colors.white,
+            ),
+          ),
+          secondaryBackground: Container(
+            color: Theme.of(context).colorScheme.error.withValues(alpha: 0.75),
+            margin: Theme.of(context).cardTheme.margin,
+            alignment: Alignment.centerRight,
+            padding: const EdgeInsets.only(right: 20),
+            child: const Icon(
+              Icons.delete,
+              color: Colors.white,
+            ),
+          ),
+          onDismissed: (direction) {
+            onRemoveItem(groceries[index]);
+          },
+          child: GroceryItem(groceries[index]),
+        ),
+      );
+    }
+
+    return content;
   }
 }
