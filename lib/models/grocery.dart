@@ -6,14 +6,16 @@ const uuid = Uuid();
 
 class Grocery {
   Grocery({
+    this.id,
     required this.name,
     required this.quantity,
     required this.category,
-  }) : id = uuid.v4();
+    this.isChecked = false,
+  });
 
-  final String id;
+  final String? id;
   final String name;
   final int quantity;
   final Category category;
-  final bool isChecked = false;
+  final bool isChecked;
 }

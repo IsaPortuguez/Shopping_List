@@ -7,18 +7,32 @@ class GroceriesList extends StatelessWidget {
     super.key,
     required this.groceries,
     required this.onRemoveItem,
+    required this.isLoading,
+    required this.error,
   });
 
   final List<Grocery> groceries;
   final void Function(Grocery grocery) onRemoveItem;
+  final bool isLoading;
+  final String? error;
 
   @override
   Widget build(BuildContext context) {
-    Widget content = const Center(
-      child: Text('No items added yet.'),
-    );
+    Widget content;
 
-    if (groceries.isNotEmpty) {
+    if (error != null) {
+      content = Center(
+        child: Text(error!),
+      );
+    } else if (isLoading) {
+      content = const Center(
+        child: CircularProgressIndicator(),
+      );
+    } else if (groceries.isEmpty) {
+      content = const Center(
+        child: Text('No items added yet.'),
+      );
+    } else {
       content = ListView.builder(
         itemCount: groceries.length,
         itemBuilder: (ctx, index) => Dismissible(
