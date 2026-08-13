@@ -62,8 +62,8 @@ Mobile application developed with **Flutter and Dart** that allows users to crea
 - Mark grocery items as purchased
 - Remove grocery items using swipe gestures
 - Restore an item if the deletion request fails
-- Handle loading and error states
-- Display an empty-state message when no items are available
+- Display a loading indicator while fetching data
+- Handle loading, error, and empty states
 - Persist data using Firebase Realtime Database REST API
 - Environment variables for local configuration
 - Material 3 design
