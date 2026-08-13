@@ -119,6 +119,7 @@ Mobile application developed with **Flutter and Dart** that allows users to crea
 
 ## Project Structure
 
+```text
 SHOPPING_LIST/
 ├── assets/
 │   └── screenshots/                  # Images used in the README
@@ -145,6 +146,7 @@ SHOPPING_LIST/
 ├── .gitignore                         # Files ignored by Git
 ├── pubspec.yaml                       # Dependencies and project configuration
 └── README.md                          # Project documentation
+```
 
 ## Project Status
 
