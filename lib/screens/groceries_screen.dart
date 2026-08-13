@@ -7,6 +7,7 @@ import 'package:shopping_list/models/category.dart';
 import 'package:shopping_list/models/grocery.dart';
 import 'package:shopping_list/screens/new_item_screen.dart';
 import 'package:shopping_list/widgets/groceries/groceries_list.dart';
+import 'package:shopping_list/config/env.dart';
 
 class GroceriesScreen extends StatefulWidget {
   const GroceriesScreen({super.key});
@@ -28,13 +29,13 @@ class _GroceriesScreenState extends State<GroceriesScreen> {
 
   void _loadItems() async {
     final url = Uri.https(
-      'flutter-prep-ff0a8-default-rtdb.firebaseio.com',
+      firebaseUrl,
       'shopping-list.json',
     );
 
     try {
       final response = await http.get(url);
-      
+
       if (response.statusCode >= 400) {
         throw Exception('Failed to fetch data. Please try again later');
       }
@@ -115,7 +116,7 @@ class _GroceriesScreenState extends State<GroceriesScreen> {
     });
 
     final url = Uri.https(
-      'flutter-prep-ff0a8-default-rtdb.firebaseio.com',
+      firebaseUrl,
       'shopping-list/${grocery.id}.json',
     );
 
