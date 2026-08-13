@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:shopping_list/models/category.dart';
 import 'package:shopping_list/models/grocery.dart';
-import 'package:shopping_list/config/env.dart';
 
 class NewItemScreen extends StatefulWidget {
   const NewItemScreen({super.key});
@@ -31,7 +31,7 @@ class _NewItemState extends State<NewItemScreen> {
       });
 
       final url = Uri.https(
-        firebaseUrl,
+        dotenv.env['FIREBASE_URL']!,
         'shopping-list.json',
       );
 
